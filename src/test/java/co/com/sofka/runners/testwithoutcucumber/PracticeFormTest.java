@@ -14,6 +14,7 @@ import java.util.List;
 public class PracticeFormTest {
 
     private WebDriver driver;
+    private static final String FALLO = "Datos suministrados nos coinciden con los arrojados por el sistema";
 
     @BeforeEach //Esto es para hacer los ajustes antes de iniciar la prueba
     public void setUp(){
@@ -32,8 +33,8 @@ public class PracticeFormTest {
         practiceForm.typeUserNumberMobile("1234567890");
         practiceForm.doSubmit();
 
-        /**=========Validaciones===========*/
-        Assertions.assertEquals(practiceForm.isRegistrationDone(),forSubmittedForm());
+        //=========Validaciones===========
+        Assertions.assertEquals(practiceForm.isRegistrationDone(),forSubmittedForm(),FALLO);
     }
 
     @AfterEach //TearDown traduce dar de baja o terminar, lo usamos para cerrar el driver despues del test
@@ -43,7 +44,7 @@ public class PracticeFormTest {
     }
 
     private List<String> forSubmittedForm(){
-        List<String> submitedFormResult = new ArrayList<String>();
+        List<String> submitedFormResult = new ArrayList<>();
         submitedFormResult.add("Teodoro Calle");
         submitedFormResult.add("Male");
         submitedFormResult.add("1234567890");
